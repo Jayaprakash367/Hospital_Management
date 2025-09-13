@@ -1,0 +1,31 @@
+# Hospital Management System Requirements
+# Install with: pip install -r requirements.txt
+
+# Web Framework
+Flask>=2.0.0
+
+# GUI Framework (usually included with Python)
+# tkinter (built-in)
+
+# Data visualization
+matplotlib>=3.5.0
+numpy>=1.21.0
+
+# Optional: For enhanced date/time handling
+python-dateutil>=2.8.2
+
+# Optional: For PDF generation (future feature)
+reportlab>=3.6.0
+
+# Optional: For Excel export (future feature)
+openpyxl>=3.0.9
+
+# Optional: For advanced GUI components
+pillow>=8.3.0
+
+# SMS service
+twilio>=7.0.0
+
+# Development dependencies (optional)
+# pytest>=6.2.5
+# black>=21.9.0

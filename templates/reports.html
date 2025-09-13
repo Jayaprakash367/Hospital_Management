@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🏥 Hospital Management System - Reports</h1>
+        <p>Welcome, {{ user.full_name if user.full_name else user.username }}</p>
+        <nav>
+            <a href="{{ url_for('home') }}">Dashboard</a>
+            <a href="{{ url_for('patients') }}">Patients</a>
+            <a href="{{ url_for('doctors') }}">Doctors</a>
+            <a href="{{ url_for('appointments') }}">Appointments</a>
+            <a href="{{ url_for('billing') }}">Billing</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Reports Dashboard</h2>
+            <div id="reports-content">
+                <p>Select a report to generate from the options below.</p>
+            </div>
+            <form action="{{ url_for('generate_report') }}" method="post">
+                <button type="submit" name="report_type" value="patient_summary">Generate Patient Summary Report</button>
+                <button type="submit" name="report_type" value="financial_summary">Generate Financial Summary Report</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hospital Management System - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+</head>
+
+<body>
+    <header>
+        <h1><i>🏥 Hospital Management System Dashboard</i></h1>
+        <p>Welcome, {{ user.full_name if user.full_name else user.username }}</p>
+        <nav>
+            <a href="{{ url_for('home') }}" title="Dashboard - Animated transitions enhance user experience by smoothly navigating between pages. Example: Click to view overall hospital statistics and quick links.">Dashboard</a>
+            <a href="{{ url_for('patients') }}" title="Patients - Animation effects highlight patient data sections for better focus. Example: Click to view 50-60 patient details including medical history and appointments.">Patients</a>
+            <a href="{{ url_for('doctors') }}" title="Doctors - Subtle hover animations improve navigation clarity. Example: Click to see detailed doctor profiles and specialties.">Doctors</a>
+            <a href="{{ url_for('appointments') }}" title="Appointments - Animated feedback on booking actions for responsiveness. Example: Click to manage upcoming and past appointments with smooth transitions.">Appointments</a>
+            <a href="{{ url_for('billing') }}" title="Billing - Smooth transitions on billing details for seamless interaction. Example: Click to review patient billing and payment history.">Billing</a>
+            <a href="{{ url_for('reports') }}" title="Reports - Animated charts and data visualization enhance report readability. Example: Click to generate and view detailed hospital reports.">Reports</a>
+            <a href="{{ url_for('logout') }}" title="Logout - Animated logout confirmation for user assurance. Example: Click to securely log out of the system with confirmation animation.">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section>
+                <h2>Dashboard Overview</h2>
+                <p>This is the main dashboard page. Modules and statistics will be displayed here.</p>
+                <div id="stats">
+                    <p>Loading statistics...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

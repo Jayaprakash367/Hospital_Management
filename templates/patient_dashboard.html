@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🏥 Hospital Management System - Patient Dashboard</h1>
+        <p>Welcome, {{ user.full_name if user.full_name else user.username }}</p>
+        <nav>
+            <a href="{{ url_for('patient_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('patient_billing') }}">My Billing</a>
+            <a href="#contact-doctor">Contact Doctor</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('doctor_dashboard') }}">Doctors</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>My Information</h2>
+            <div class="patient-info">
+                <p><strong>National ID:</strong> {{ patient.national_id }}</p>
+                <p><strong>Name:</strong> {{ patient.first_name }} {{ patient.last_name }}</p>
+                <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+                <p><strong>Gender:</strong> {{ patient.gender }}</p>
+                <p><strong>Phone:</strong> {{ patient.phone }}</p>
+                <p><strong>Email:</strong> {{ patient.email }}</p>
+                <p><strong>Address:</strong> {{ patient.address }}</p>
+                <p><strong>Emergency Contact:</strong> {{ patient.emergency_contact }}</p>
+                <p><strong>Emergency Phone:</strong> {{ patient.emergency_phone }}</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>My Appointments</h2>
+            <div id="patient-appointments">
+                <p>Loading appointments...</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>My Medical Records</h2>
+            <div id="patient-records">
+                {% if medical_records %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Doctor</th>
+                                <th>Diagnosis</th>
+                                <th>Prescription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for record in medical_records %}
+                                <tr>
+                                    <td>{{ record.visit_date }}</td>
+                                    <td>{{ record.doctor_id }}</td>
+                                    <td>{{ record.diagnosis }}</td>
+                                    <td>{{ record.prescription }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No medical records found.</p>
+                {% endif %}
+            </div>
+        </section>
+
+        <section id="contact-doctor">
+            <h2>Contact Doctor</h2>
+            <div id="doctor-list">
+                <p>Loading doctors...</p>
+            </div>
+            <div id="contact-form" style="display: none;">
+                <h3>Contact Doctor</h3>
+                <form id="contact-doctor-form">
+                    <input type="hidden" id="selected-doctor-id" name="doctor_id">
+                    <div class="form-group">
+                        <label for="contact-message">Message:</label>
+                        <textarea id="contact-message" name="message" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/patient_dashboard.js') }}"></script>
+</body>
+</html>

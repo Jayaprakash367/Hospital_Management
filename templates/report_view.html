@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - {{ report_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🏥 {{ report_title }}</h1>
+        <p>Welcome, {{ user.full_name if user.full_name else user.username }}</p>
+        <nav>
+            <a href="{{ url_for('home') }}">Dashboard</a>
+            <a href="{{ url_for('patients') }}">Patients</a>
+            <a href="{{ url_for('doctors') }}">Doctors</a>
+            <a href="{{ url_for('appointments') }}">Appointments</a>
+            <a href="{{ url_for('billing') }}">Billing</a>
+            <a href="{{ url_for('reports') }}">Reports</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <a href="{{ url_for('reports') }}">&larr; Back to Reports</a>
+            
+            {% if report_type == 'patient_summary' %}
+            <h2>Patient Summary</h2>
+            <p><strong>Total Patients:</strong> {{ report_data.total_patients }}</p>
+            <h3>Patients by Gender:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gender</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in report_data.patient_by_gender %}
+                    <tr>
+                        <td>{{ item.gender }}</td>
+                        <td>{{ item.count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+
+            {% if report_type == 'financial_summary' %}
+            <h2>Financial Summary</h2>
+            <p><strong>Total Revenue (Paid):</strong> ${{ "%.2f"|format(report_data.total_revenue) }}</p>
+            <h3>Billing Status Summary:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Count</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in report_data.billing_summary %}
+                    <tr>
+                        <td>{{ item.payment_status|capitalize }}</td>
+                        <td>{{ item.count }}</td>
+                        <td>${{ "%.2f"|format(item.total) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
