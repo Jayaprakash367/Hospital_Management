@@ -1,8 +1,6 @@
-
 """
 Simple diagnostic script to identify GUI issues
 """
-
 import sys
 import os
 
@@ -175,7 +173,6 @@ def main():
             print("✓ Test GUI window created successfully!")
             print("If you can see a test window, your GUI is working.")
             print("Close the test window and try running: python main.py")
-            
             root.mainloop()
             
         except Exception as e:
