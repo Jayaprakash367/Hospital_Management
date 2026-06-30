@@ -92,7 +92,6 @@ app.secret_key = 'your_secret_key_here'
 
 config = Config()
 DATABASE = config.DATABASE_PATH
-
 def get_db():
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
@@ -396,7 +395,6 @@ def api_appointments():
 def patients():
     if 'user' not in session:
         return redirect(url_for('login'))
-    # Add any backend logic for patients page if needed
     return render_template('patients.html', user=session['user'])
 
 @app.route('/api/billing')
