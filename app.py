@@ -9,7 +9,6 @@ CREATE TABLE users (
     email TEXT,
     phone TEXT
 );
-
 CREATE TABLE patients (
     patient_id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
@@ -23,7 +22,6 @@ CREATE TABLE patients (
     emergency_phone TEXT,
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
-
 CREATE TABLE doctors (
     doctor_id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
@@ -35,7 +33,6 @@ CREATE TABLE doctors (
     available_to TEXT,
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
-
 CREATE TABLE appointments (
     appointment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     patient_id INTEGER,
@@ -65,7 +62,6 @@ CREATE TABLE billing (
     FOREIGN KEY(patient_id) REFERENCES patients(patient_id),
     FOREIGN KEY(appointment_id) REFERENCES appointments(appointment_id)
 );
-
 CREATE TABLE medical_records (
     record_id INTEGER PRIMARY KEY AUTOINCREMENT,
     patient_id INTEGER,
@@ -79,7 +75,6 @@ CREATE TABLE medical_records (
     FOREIGN KEY(appointment_id) REFERENCES appointments(appointment_id)
 );
 """
-
 from flask import Flask, render_template, redirect, url_for, request, session, jsonify
 import sqlite3
 import hashlib
